@@ -18,7 +18,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-haskell@v1
       with:
-        ghc-version: '8.10.3'
+        ghc-version: '8.6.5'
         cabal-version: '3.2'
 
     - name: Cache
@@ -35,9 +35,9 @@ jobs:
     - name: Install dependencies
       run: |
         cabal update
-        cabal install --only-dependencies --enable-tests
-        cabal configure --enable-tests
+        cabal new-install --only-dependencies --enable-tests
+        cabal new-install --lib HUnit base mtl
     - name: Build
-      run: cabal build --enable-tests
+      run: cabal new-build --enable-tests
     - name: Run tests
       run: cabal v1-test
