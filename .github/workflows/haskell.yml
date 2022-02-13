@@ -34,7 +34,6 @@ jobs:
           ${{ runner.os }}-
     - name: Install dependencies
       run: |
-        cabal update
         cabal new-install HUnit base mtl
     - name: Build
       run: cabal build --enable-tests
