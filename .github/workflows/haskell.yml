@@ -1,0 +1,42 @@
+name: Haskell CI
+
+on:
+  push:
+    branches: 
+      - 'simply-typed'
+      - 'typeless-lambda'
+      - 'system-f'
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-haskell@v1
+      with:
+        ghc-version: '8.6.5'
+        cabal-version: '3.2'
+
+    - name: Cache
+      uses: actions/cache@v1
+      env:
+        cache-name: cache-cabal
+      with:
+        path: ~/.cabal
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/*.cabal') }}-${{ hashFiles('**/cabal.project') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+    - name: Install dependencies
+      run: |
+        cabal new-install --lib --only-dependencies 
+        cabal new-install --lib HUnit 
+    - name: Build
+      run: cabal new-build --enable-test
+    - name: Run tests
+      run: cabal test
