@@ -34,7 +34,7 @@ jobs:
           ${{ runner.os }}-
     - name: Install dependencies
       run: |
-        cabal install cabal-install
+        cabal new-install cabal-install
         cabal update
         cabal new-install HUnit base mtl
     - name: Build
