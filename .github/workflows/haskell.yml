@@ -2,7 +2,10 @@ name: Haskell CI
 
 on:
   push:
-    branches: [ simply-typed, typeless-lambda, system-f ]
+    branches: 
+      - 'simply-typed'
+      - 'typeless-lambda'
+      - 'system-f'
   pull_request:
     branches: [ main ]
 
