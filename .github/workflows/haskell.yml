@@ -35,9 +35,8 @@ jobs:
     - name: Install dependencies
       run: |
         cabal update
-        cabal new-install HUnit
-        cabal build --only-dependencies --enable-tests --enable-benchmarks
+        cabal new-install HUnit base mtl
     - name: Build
-      run: cabal build --enable-tests --enable-benchmarks all
+      run: cabal build --enable-tests
     - name: Run tests
       run: cabal v1-test
