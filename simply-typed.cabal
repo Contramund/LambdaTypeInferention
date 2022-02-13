@@ -12,22 +12,19 @@ library
     build-depends:          base,
                             mtl
     hs-source-dirs:         src
-    default-language:       Haskell2010
 
 Test-Suite inferType-testing
     type:                   exitcode-stdio-1.0
     ghc-options:            -Wall
     hs-source-dirs:         test
     main-is:                inferTypeTest.hs
-    build-depends:          base,
-                            HUnit,
-                            simply-typed
+    default-language:       Haskell2010
+    build-depends:          base, HUnit, simply-typed
 
 Test-Suite check-testing
     type:                   exitcode-stdio-1.0
     ghc-options:            -Wall
     hs-source-dirs:         test
     main-is:                checkTest.hs
-    build-depends:          base,
-                            HUnit,
-                            simply-typed
+    default-language:       Haskell2010
+    build-depends:          base, HUnit, simply-typed
